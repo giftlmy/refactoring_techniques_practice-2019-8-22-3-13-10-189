@@ -6,6 +6,8 @@ import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -15,17 +17,25 @@ public class OwingPrinterTest {
 
     @Before
     public void setUpStreams() {
-        System.setOut(new PrintStream(outContent));
+
+//        System.setOut(new PrintStream(outContent));
     }
 
     @After
     public void restoreStreams() {
+
         System.setOut(originalOut);
     }
 
     @Test
     public void printOwing() {
-//        System.out.print("hello");
-//        assertEquals("hello", outContent.toString());
+        //given
+        List<Order> orders = new ArrayList<Order>();
+        orders.add(new Order(3));
+        orders.add(new Order(4));
+        OwingPrinter owingPrinter = new OwingPrinter();
+        //when
+        owingPrinter.printOwing("name",orders);
+
     }
 }
